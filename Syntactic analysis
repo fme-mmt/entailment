@@ -1,0 +1,101 @@
+SYNTACTIC ANALYSIS
+
+At first, we've had to install pip, python, spacy and then, jupyter. Without that, we couldn't work.
+We've downloaded NLTK package too.
+
+So, Python language looks like MATLAB language, but it's being difficult.
+
+However, we've developed the following using JUPYTER NOTEBOOK:
+
+The first code:
+
+import spacy
+#from spacy import attrs
+
+nlp = spacy.load('en', vectors=False)
+doc = nlp(u'Bob bought the pizza to Alice')
+
+for sent in doc.sents:
+     for i, word in enumerate(sent):
+         if word.head is word:
+             head_idx = 0
+         else:
+            head_idx = doc[i].head.i+1
+            
+         print("%d\t%s\t%s\t%s\t%s\t%s\t%d\t%s\t%s\t%s"%(
+             i+1, # There's a word.i attr that's position in *doc*
+             word, # If you want the base-form, you have to change it for "word.lemma_,"
+             '_',
+             word.pos_, # Coarse-grained tag
+             word.tag_, # Fine-grained tag
+             '_',
+             head_idx,
+             word.dep_, # Relation
+             '_', '_'))
+             
+
+It does a syntactic analysis. The output of a sentence written in "doc" is:
+
+1	Bob	    _	PROPN	  NNP	_	2	nsubj	_	_
+2	bought	_	VERB	  VBD	_	0	ROOT	_	_
+3	the	    _	DET	    DT	_	4	det	_	_
+4	pizza	  _	NOUN	  NN	_	2	dobj	_	_
+5	to	    _	ADP	    IN	_	2	prep	_	_
+6	Alice	  _	PROPN	  NNP	_	5	pobj	_	_
+
+or, with the base-form:
+
+1	bob	    _	PROPN	  NNP	_	2	nsubj	_	_
+2	buy	    _	VERB	  VBD	_	0	ROOT	_	_
+3	the	    _	DET	    DT	_	4	det	_	_
+4	pizza	  _	NOUN	  NN	_	2	dobj	_	_
+5	to	    _	ADP	    IN	_	2	prep	_	_
+6	alice	  _	PROPN	  NNP	_	5	pobj	_	_
+
+
+The first column is the order of words of the sentence. The second, every word. Then, we have a description (for example, "PROPN"
+is an own name and NNP the abbreviation. Th next number, and the most important, shows us the order of nodes in a tree. The last,
+its function.
+
+Also, using NLTK and importing a tree package, we can get what we wanted. The code is:
+
+import spacy
+from nltk import Tree
+nlp = spacy.load('en')
+
+doc = nlp(u'Bob bought the pizza to Alice')
+
+def to_nltk_tree(node):
+    if node.n_lefts + node.n_rights > 0:
+        print("%s%s"%(
+             node.lemma_, # or "node.orth_," with original form
+             ','))
+        return Tree(node.orth_, [to_nltk_tree(child) for child in node.children])
+    else:
+        print("%s%s"%(
+             node.lemma_, # or "node.orth_," with original form
+             ';'))
+        return node.orth_
+print('[')
+[to_nltk_tree(sent.root).pretty_print() for sent in doc.sents]
+
+
+And, the output that we were looking for is:
+
+[
+buy,
+bob;
+pizza,
+the;
+to,
+alice;
+    bought      
+  ____|______    
+ |  pizza    to 
+ |    |      |   
+Bob  the   Alice
+
+
+So, now we need to understand more python language and try to get the output like this:
+
+[buy, Bob; pizza, the; to, Alice]
