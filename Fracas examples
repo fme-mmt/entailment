@@ -1,0 +1,59 @@
+FraCas Examples
+
+Case 1 Existence
+
+P: Some great tenors are German.
+H: There are great tenors that are German.
+
+Instead of “some” we can have: “no”, “most”, “several”, “all”,…
+
+Case 2 Monotonicity ( second argument)
+
+P: An Irishman won a Nobel prize for literature. 
+H: An Irishman won a Nobel prize. 
+
+
+Monotonicity upward on second argument: “Nobel prize for literature” < “Nobel prize”.
+
+A < B means A entails B. For example, “cat” < “mammal” < “animal”.
+
+P: An Irishman won a Nobel prize.
+H: An Irishman won a Nobel prize for literature.
+
+
+Case 3 Monotonicity (first argument)
+
+P1: A Swede won a Nobel prize.
+P2: Every Swede is a Scandinavian.
+H: A Scandinavian won a Nobel prize.
+
+P: A cat won a Nobel prize.
+H: An animal won a Nobel prize.
+
+P: An animal won a Nobel prize.
+H: A  cat won a Nobel prize.
+
+
+Here the entailment “cat”<”animal” is implicit, we don’t need another premise. Also with “animal” !< “cat”  (“animal” doesn’t entail “cat”).
+
+Case 4 Adjective
+
+P: Every mammal is an animal.
+H: Every four-legged mammal is a four-legged animal.
+
+Case 5 Opposite Adjectives
+
+P: Mickey is a small animal.
+H: Mickey is a large animal.
+
+P1:	Mickey is a small animal.
+P2:	Dumbo is a large animal.
+H:	Mickey is smaller than Dumbo.
+Comparison on opposite adjectives.
+
+Case 6 Certainty
+
+P: Smith knew Itel had won the contract in 1992.
+H: Itel won the contract in 1992.
+
+Instead of “knew” we can have “believed”, “thought”, “denied”, “said”,…
