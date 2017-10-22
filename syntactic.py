@@ -1,5 +1,3 @@
-
-
 def parse(nlp, sentence):
     """Parse unicode sentence into a NLTK tree
     using the spacy parser"""
@@ -13,7 +11,7 @@ def tree(node):
     if node.pos_ in ('VERB', 'NOUN'):
         tag = node.lemma_
     else:
-        tag = node.orth_
+        tag = node.lower_
 
     if node.n_lefts + node.n_rights > 0:
         return Tree(tag, [tree(child) for child in node.children])
@@ -32,4 +30,7 @@ if __name__ == '__main__':
         trees.append(parse(nlp, unicode(new_text)))
 
     for t in trees:
-        print(t)
+		from view import *
+		createfile(view(t))
+		print(t)
+		t.pretty_print()
