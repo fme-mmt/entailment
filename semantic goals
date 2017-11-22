@@ -1,2 +1,8 @@
 # Here we intend to provide the desired output our semantic processor program would provide in different instances
 
+
+For those working on this transition, bear in mind that the following have to be installed to run the syntactic code:
+
+python -m spacy download en
+python -m spacy download en_core_web_sm
+python -m spacy download en_core_web_md
