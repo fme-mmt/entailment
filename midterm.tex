@@ -32,13 +32,15 @@
 %\usetheme{Singapore}
 %\usetheme{Szeged}
 %\usetheme{Warsaw}
-
-\title{Text Entailment}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{float}
+\title{Recognizing Textual Entailment}
 
 % A subtitle is optional and this may be deleted
 \subtitle{MMT Project}
 
-\author{Jordi Saludes \and Nora Jarque \and Víctor Cristino \and Andreu Masdeu \and Xavier Salvador \and Damia Fulton \and Raul Perez \and Gerard Sanchez    \and Alejandro Saez}
+\author{ Nora Jarque \and V\'ictor Cristino \and Andreu Masdeu \and Xavier Salvador \and Dami\`a Fulton \and Raul P\'erez \and Gerard S\'anchez    \and Alejandro S\'aez}
 % - Give the names in the same order as the appear in the paper.
 % - Use the \inst{?} command only if the authors have different
 %   affiliation.
@@ -68,99 +70,419 @@
 % Section and subsections will appear in the presentation overview
 % and table of contents.
 \section{Description of the problem}
+
+
+\begin{frame}{Description of the problem}        \centering    
+    
+    \begin{tabular}{c}
+        P: A cat ate all the cookies. \\
+        H: An animal ate all the cookies.\\
+    \end{tabular}
+    
+    \bigskip
+    
+    \color{gray}
+    
+    \begin{tabular}{c}
+        P: A cat ate all the cookies. \\
+        H: A dog ate some of the cookies.\\
+    \end{tabular}
+    
+    \bigskip
+    
+    \begin{tabular}{c}
+        P: A cat ate some of the cookies. \\
+        H: A cat ate all the cookies.\\
+    \end{tabular}
+\end{frame}
+
 \begin{frame}{Description of the problem}
+  \centering
+  
+  \color{gray}
+
+  \begin{tabular}{c}
+        P: A cat ate all the cookies. \\
+        H: An animal ate all the cookies.\\
+    \end{tabular}
+    
+    \bigskip
+    
+    \color{black}
+    \begin{tabular}{c}
+        P: A cat ate all the cookies. \\
+        H: A dog ate some of the cookies.\\
+    \end{tabular}
+    
+    \bigskip
+    
+    \color{gray}
+    
+    \begin{tabular}{c}
+        P: A cat ate some of the cookies. \\
+        H: A cat ate all the cookies.\\
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Description of the problem}
+    \centering
+  \color{gray}
+    \begin{tabular}{c}
+        P: A cat ate all the cookies. \\
+        H: An animal ate all the cookies.\\
+    \end{tabular}
+    
+    \bigskip
+    
+    \begin{tabular}{c}
+        P: A cat ate all the cookies. \\
+        H: A dog ate some of the cookies.\\
+    \end{tabular}
+    \color{black}
+    
+    \bigskip
+    
+    \begin{tabular}{c}
+        P: A cat ate some of the cookies. \\
+        H: A cat ate all the cookies.\\
+        \end{tabular}
+\end{frame}
+
+\begin{frame}{Description of the problem}
+  \begin{center}
+      OBJECTIVE:
+  Automatize Recognizing Textual Entailment
+\end{center}
+\end{frame}
+
+
+\section {Machine learning approach}
+\begin{frame}{Machine learning approach}
+  \begin{center}
+  \includegraphics[width=0.5\textwidth]{lstm.png}
+  \end{center}
   \begin{itemize}
-  \item {
-    My first point.
+  \item { +: More accuracy, parameter tuning is automatic, scalability is not constrained
   }
-  \item {
-    My second point.
+  \item { -: Bounds on uncertainty, tones of parameters, no explainability
   }
   \end{itemize}
 \end{frame}
-\section{Comparison with machine learning approach}
-\begin{frame}{Comparison with machine learning approach}
-  \begin{itemize}
-  \item {
-    My first point.
-  }
-  \item {
-    My second point.
-  }
-  \end{itemize}
+
+
+\section {Our approach}
+
+\begin{frame}{ Our Approach}
+  \begin{center}
+  \includegraphics[width=1\textwidth]{mmt.png}
+  \end{center}
 \end{frame}
+
 \section{Syntactic treatment}
-\begin{frame}{Syntactic treatment}
-  \begin{itemize}
-  \item {
-    My first point.
-  }
-  \item {
-    My second point.
-  }
-  \end{itemize}
+\begin{frame}{Syntactic treatment: what is it?}
+    \begin{itemize}
+        \item Set of rules or principles that govern how words are put together to form phrases, well formed sequences of words. \break
+        \item These rules allow us to organize the phrase in a rooted tree (digraph). \break
+        \item Stanford CoreNLP: webpage that does this syntactic analysis, indicating in the edges the dependence of the nodes with his root.\break
+    \end{itemize}
+    \centering
+    \includegraphics[width=0.5\textwidth]{CoreNLP.png}
 \end{frame}
+
+\begin{frame}{Syntactic treatment: what have we done?}
+    \begin{itemize}
+        \item Natural Language Processing (NLP) $\rightarrow$ aritificial intelligence \break
+        \item Python $\rightarrow$ high-level programming language \break
+        \item Spacy $\rightarrow$ syntactic parser, method within natural language processing\break
+        \item NLTK $\rightarrow$ a suite of libraries and programs. We use Tree model \break
+        \item Graphviz $\rightarrow$ program to show trees \break
+        \item Jupyter Notebook, IPython $\rightarrow$ applications that allow editing and running notebook documents
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Syntactic treatment: what have we got?}
+    Two Python programs:\break
+    \begin{itemize}
+        \item \textbf{syntactic.py}: python program that, given some sentences, returns a vector of trees and show us with formal print and pretty print.\break
+        \item \textbf{view.py}: python program that, given a tree, returns an .png image using graphviz.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Syntactic treatment: example}
+
+    \includegraphics[width=0.9\textwidth]{syntactic_graphviz.png}
+    %\includegraphics[width=0.5\textwidth]{Syntactic.png}
+    %\includegraphics[width=0.4\columnwidth]{graphviz1.png}
+    %\includegraphics[width=0.35\textwidth]{graphviz2.png}
+\end{frame}
+
+
+\begin{frame}{Modal Logic}
+\begin{center}
+    \begin{tabular}{  l  l  l }
+    
+    \textbf{Logic} & \textbf{Symbol} & \textbf{Expression} \\
+    Modal & \fbox{$\phantom{}$} & It is necessary that...   \\ 
+     & \diamond & It is possible that... \\ 
+    Deontic & $O$ & It is obligatory that.. \\
+     & $P$ & It is permitted that.. \\ 
+      & $F$ & It is forbidden that.. \\ 
+    Doxastic & $Bx$ & x believes that... \\ 
+      & $Kx$ & x knows that... \\ 
+    \end{tabular}
+\end{center}
+\end{frame}
+
 \section{Semantic processing}
 \begin{frame}{Semantic processing}
   \begin{itemize}
   \item {
-    My first point.
+    Using the syntactic tree, we want to obtain a logic expression for the phrase.
   }
   \item {
-    My second point.
+    We can achieve that with lambda calculus.
   }
   \end{itemize}
 \end{frame}
+
+
+\begin{frame}{Lambda calculus: Example}
+\begin{center}
+    Every boxer walks
+\end{center}
+  \begin{itemize}
+      \item {
+      every: $\lambda P.\lambda Q.\forall x(P@x\rightarrow Q@x)$
+      }
+      \item {
+      boxer: $\lambda y.BOXER(y)$
+      }
+      \item {
+      walks: $\lambda x.WALK(x)$
+      }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Lambda calculus: Example}
+  \begin{center}
+      Every boxer
+  \end{center}
+  \begin{itemize}
+      \item {
+      $\lambda P.\lambda Q.\forall x(P@x\rightarrow Q@x)@\lambda y.BOXER(y)$
+      }
+      \item {
+       $\lambda Q.\forall x(\lambda y.BOXER(y)@x\rightarrow Q@x)$
+      }
+      \item {
+       $\lambda Q.\forall x(BOXER(x)\rightarrow Q@x)$
+      }
+      
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Lambda calculus: Example}
+  \begin{center}
+  \includegraphics[width=1\textwidth]{lambdaex1.PNG}
+  \end{center}
+\end{frame}
+
+
 \section{Conversion into Kanren}
-\begin{frame}{Conversion into Kanren}
+
+
+\begin{frame}{Conversion into Kanren - Operations}
+\color{black}
+    \begin{center}
+        x = var()\\
+        run(1, x, eq(x, 5))\\
+\color{red}
+        $>>>$ 5
+    \end{center}
+\color{gray}
+    \begin{center}
+        z = var()\\
+        run(1, x, eq(z, x), eq(z, 3))\\
+        $>>>$ 3
+    \end{center}
+\end{frame}
+
+\begin{frame}{Conversion into Kanren - Operations}
+\color{gray}
+    \begin{center}
+        x = var()\\
+        run(1, x, eq(x, 5))\\
+\color{gray}
+        $>>>$ 5
+    \end{center}
+\color{black}
+    \begin{center}
+        z = var()\\
+        run(1, x, eq(z, x), eq(z, 3))\\
+        \color{red}
+        $>>>$ 3
+    \end{center}
+\end{frame}
+
+\begin{frame}{Conversion into Kanren - Operations}
+    \begin{center}
+        run(0, x, membero(x, (1, 2, 3)),\\ membero(x, (2, 3, 4)))\\
+        \color{red} $>>>$ (2, 3)
+    \end{center}
+    \color{gray}
+    \begin{center}
+        run(0, x, conde(\\
+        membero(x, (1, 2, 3)),\\ 
+        membero(x, (2, 3, 4)))\\
+        )\\
+        $>>>$ (1, 2, 3, 4)
+    \end{center}
+    \color{gray}
+    \begin{center}
+        run(0, x, conde(\\  
+        eq(x, 1),\\   
+        membero(x, (5, 6, 7)))
+        )\\  
+        $>>>$ (1, 5, 6, 7)
+    \end{center}
+\end{frame}
+
+\begin{frame}{Conversion into Kanren - Operations}
+    \color{gray}
+    \begin{center}
+        run(0, x, membero(x, (1, 2, 3)),\\ membero(x, (2, 3, 4)))\\
+        $>>>$ (2, 3)
+    \end{center}
+    \color{black}
+    \begin{center}
+        run(0, x, conde(\\
+        membero(x, (1, 2, 3)),\\ 
+        membero(x, (2, 3, 4)))\\
+        )\\
+        \color{red}$>>>$ (1, 2, 3, 4)
+    \end{center}
+    \color{gray}
+    \begin{center}
+        run(0, x, conde(\\
+        eq(x, 1),\\ 
+        membero(x, (5, 6, 7)))
+        )\\
+        $>>>$ (1, 5, 6, 7)
+    \end{center}
+\end{frame}
+
+\begin{frame}{Conversion into Kanren - Operations}
+    \color{gray}
+    \begin{center}
+        run(0, x, membero(x, (1, 2, 3)),\\ membero(x, (2, 3, 4)))\\
+        $>>>$ (2, 3)
+    \end{center}
+
+    \begin{center}
+        run(0, x, conde(\\
+        membero(x, (1, 2, 3)),\\ 
+        membero(x, (2, 3, 4)))\\
+        )\\
+        $>>>$ (1, 2, 3, 4)
+    \end{center}
+    \color{black}
+    \begin{center}
+        run(0, x, conde(\\
+        eq(x, 1),\\ 
+        membero(x, (5, 6, 7)))
+        )\\
+        \color{red}$>>>$ (1, 5, 6, 7)
+    \end{center}
+\end{frame}
+
+\begin{frame}{Conversion into Kanren - Operations}
+\begin{center}
+    def function(\color{red}arguments\color{black}):\\
+    return conde(\color{gray}expression\color{black})
+\end{center}
+
+\begin{center}
+run(0,\color{red}arguments\color{black}, function)
+\end{center}
+\end{frame}
+
+\begin{frame}{Conversion into Kanren - Simpsons}
+\begin{center}
+    parent = \color{red}Relation()\color{black}\\
+    facts (parent, ("Homer", "Bart"),\\
+    ("Abe", "Homer"))
+\end{center}
+\begin{center}
+    \color{orange}def \color{black}grandparent(u, v):\\
+    return conde((parent(u, y), parent(y, v)))
+\end{center}
+
+
+
+\begin{center}
+    run(0, x, grandparent(x, "Bart"))
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}{Conversion into Kanren - Simpsons}
   \begin{itemize}
-  \item {
-    My first point.
-  }
-  \item {
-    My second point.
-  }
+    \item{
+    Define relations: parent, married, grandparent, siblings.
+    }
+    \item{
+    Connect the relations:
+      \includegraphics[width=1\textwidth]{fs.PNG}
+    }
   \end{itemize}
 \end{frame}
-\section{Illustrative examples}
-\begin{frame}{Illustrative examples}
+
+\begin{frame}{Conversion into Kanren - Simpsons}
   \begin{itemize}
-  \item {
-    My first point.
-  }
-  \item {
-    My second point.
-  }
+    \item{
+    Create a function that adds facts to the database.
+    }
+    \item{
+    Add some facts  
+      \includegraphics[width=1\textwidth]{adddb.PNG}
+    }
+    \item{
+    Ask some questions  
+      \includegraphics[width=1\textwidth]{prints.PNG}
+    }
+    \item{
+    Output:  
+      \includegraphics[width=1\textwidth]{output.PNG}
+    }
   \end{itemize}
 \end{frame}
+
 \section{Conclusion and goals looking forward}
+
 \begin{frame}{Conclusion and goals looking forward}
   \begin{itemize}
   \item {
-    My first point.
+    Find a way to express negation in kanren.
   }
-  \item {
-    My second point.
+    \item {
+    Add a dictionary of synonyms and inclusion relations in kanren.
   }
+     \item {
+    Do the syntactic, semantic and logic treatment of the sentences in the same program.
+  }
+
   \end{itemize}
 \end{frame}
 
-
-
 % You can reveal the parts of a slide one at a time
 % with the \pause command:
-
-
-
-
-
-
 % All of the following is optional and typically not needed. 
 \appendix
 \section<presentation>*{\appendixname}
 \subsection<presentation>*{For Further Reading}
-
-
 
 \end{document}
 
