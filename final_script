@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib as plt
 import pandas as pd
+import spacy
 
 from nltk import Tree
 nlp = spacy.load('en')
@@ -31,13 +32,13 @@ def to_nltk_tree(node):
              ';'))
         return node.orth_
       
-  def parse_sentence(nlp, sentence):
-    """Parse unicode sentence into a NLTK tree
-    using the spacy parser"""
-    doc = nlp(sentence)
-    trees = [tree_sentence(s.root) for s in doc.sents]
-    assert len(trees) == 1
-    return trees[0]
+def parse_sentence(nlp, sentence):
+  """Parse unicode sentence into a NLTK tree
+  using the spacy parser"""
+  doc = nlp(sentence)
+  trees = [tree_sentence(s.root) for s in doc.sents]
+  assert len(trees) == 1
+  return trees[0]
 
 def tree_sentence(node):
     from nltk import Tree
@@ -91,23 +92,6 @@ def conjuncio(s):
 
 
     
-if __name__ == '__main__':
-    sentences = []
-    trees = []
-    while True:
-        new_text = input('frase aquí:')
-        if not new_text: break
-        sentences.append(parse_sentence(nlp, (new_text)))
-        trees.append(parse_tree(nlp, (new_text)))
-
-    for s in sentences:
-        print(s.pretty_print())
-
-for i in range(len(t)-1):
-    if (i>0 and t[i-1]=='DT' and t[i]=='JJ'): t[i]='NN'
-        
-for t in trees:
-    print(t)
 
 def semantic(frase):
   sentences = []
@@ -119,14 +103,19 @@ def semantic(frase):
   for s in sentences:
       print(s.pretty_print())
 
+  for t in trees:
+    print(t)
+      
   for i in range(len(t)-1):
   	if (i>0 and t[i-1]=='DT' and t[i]=='JJ'): t[i]='NN'
+  
   
   
   res = []
   count = 0
   count2 = 0
   index = 1
+  variable = 1
   for i in range(len(sentences[0])):
       if (type(sentences[0][0])==str and type(sentences[0][1])==str and count==0): 
           res.append(propi(sentences[0][0]))
@@ -175,12 +164,12 @@ tesi= ''
 resultat = []
 
 while True:
-  frase = input('Frase')
+  frase = input('Frase:  ')
   if frase == '': break
   premises.append(frase)
 
 tesi = premises[len(premises)-1]
-premises[len(premises)-1].remove()
+del premises[len(premises)-1]
   
 for i in range(len(premises)):
   resultat.append(semantic(premises[i]))
