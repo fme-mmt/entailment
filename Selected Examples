@@ -1,0 +1,15 @@
+
+P1: A Swede won a Nobel prize.
+P2: Every Swede is a Scandinavian.
+H: A Scandinavian won a Nobel prize.
+
+P: A cat won a Nobel prize.
+H: An animal won a Nobel prize.
+
+P: An animal won a Nobel prize.
+H: A  cat won a Nobel prize.
+
+
+P: Mickey is a small animal.
+H: Mickey is a large animal.
+
