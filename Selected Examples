@@ -1,15 +1,20 @@
 
-P1: A Swede won a Nobel prize.
+P1: A Swede won a prize.
 P2: Every Swede is a Scandinavian.
-H: A Scandinavian won a Nobel prize.
+H: A Scandinavian won a prize.
 
-P: A cat won a Nobel prize.
-H: An animal won a Nobel prize.
+P: A cat won a prize.
+H: An animal won a prize.
 
-P: An animal won a Nobel prize.
-H: A  cat won a Nobel prize.
+P: An animal won a prize.
+H: A  cat won a prize.
 
 
 P: Mickey is a small animal.
 H: Mickey is a large animal.
 
+P: An Italian is smart.
+H: All Europeans are smart.
+
+P: All Italians are smart.
+H: All Europeans are smart.
