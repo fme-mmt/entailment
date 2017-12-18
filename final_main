@@ -367,7 +367,7 @@ for p in ps:
                 facts.append("facts({}, {},)".format(prop, arg))
         else:
             print('OR')
-    if p[0] == 'FOR_ALL':  # Rule   P(argP) -> Q(argQ)
+    if p[0] == 'FORALL':  # Rule   P(argP) -> Q(argQ)
         obj = p[1]
         if p[2][0] == 'IMPLY':
 
@@ -461,7 +461,7 @@ for q in query:
                 or_list.append('[{}({})],'.format(prop, arg))
             goals.append("conde({})".format(*or_list))
 
-    if q[0] == 'FOR_ALL':
+    if q[0] == 'FORALL':
         obj = 'u{}'.format(q[1])
         if not (obj in variables):
             variables.append(obj + ', ')
