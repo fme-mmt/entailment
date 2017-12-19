@@ -205,7 +205,7 @@ def semantic(frase,variable):
     print(t)
 
 
-  for i in range(len(t)-1): 
+  for i in range(len(t)-1):
     if (i>0 and t[i-1]=='DT' and t[i]=='JJ'): t[i]='NN'
 
 
@@ -258,9 +258,9 @@ def semantic(frase,variable):
           res[index].append([sentences[0][0],variable])
 
       if (type(sentences[0][i])==str and i!=0):
-        if (sentences[0][i] == 'not'): 
-            
-            res[index].append(['not'+'_'+sentences[0][i+1],variable])            
+        if (sentences[0][i] == 'not'):
+
+            res[index].append(['not'+'_'+sentences[0][i+1],variable])
             count4 = 1
         elif count4 != 1: res[index].append([sentences[0][i],variable])
 
@@ -281,7 +281,7 @@ def semantic(frase,variable):
                       res.append([])
 
                       res[index].append(conjuncio(categorical(sentences[0][0][0])))
-                        
+
                       count += 1
 
                   else:
@@ -363,8 +363,8 @@ functions = [
 ps = []
 query = []
 
-ps += resultats[:-1]
-query.append(resultats[-1], )
+ps += resultat[:-1]
+query.append(resultat[-1], )
 
 print(ps)
 
@@ -378,7 +378,8 @@ for p in ps:
             for q in p[2][1:]:
 
                 prop = q[0]  # Property
-                arg = map(str, q[1:])  # Arguments
+                arg = "[" + ', '.join(map(str, q[1:])) + "]"  # Arguments
+                #import pdb; pdb.set_trace()
 
                 if not (prop in property):  # If ain't the list, add it
                     relations.append('{} = Relation()'.format(prop))
@@ -521,7 +522,5 @@ def make_file(f_name, *ps):
 
 
 make_file('kk.py', *rs)
-execfile('kk.py')
-
-
-
+#execfile('kk.py')
+exec(open("kk.py").read())

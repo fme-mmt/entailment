@@ -191,7 +191,7 @@ def semantic(frase):
 
   for i in range(len(t)-1):
 
-  if (i>0 and t[i-1]=='DT' and t[i]=='JJ'): t[i]='NN'
+    if (i>0 and t[i-1]=='DT' and t[i]=='JJ'): t[i]='NN'
 
 
 
@@ -334,8 +334,8 @@ functions = [
 ps = []
 query = []
 
-ps += resultats[:-1]
-query.append(resultats[-1], )
+ps += resultat[:-1]
+query.append(resultat[-1], )
 
 print(ps)
 
@@ -366,6 +366,7 @@ for p in ps:
         else:
             print('OR')
     if p[0] == 'FORALL':  # Rule   P(argP) -> Q(argQ)
+        assert type(p[1]) == int
         obj = p[1]
         if p[2][0] == 'IMPLY':
 
@@ -403,13 +404,13 @@ for p in ps:
                 if obj == x:
                     P_arg += " u{},".format(obj)
                 else:
-                    P_arg += " '" + x + "'" + ','
+                    P_arg += " '{}',".format(x)
 
             for y in p[2][2][1:]:
                 if obj == y:
                     Q_arg += " u{},".format(obj)
                 else:
-                    Q_arg += " '" + y + "'" + ','
+                    Q_arg += " '{}',".format(y)
 
             P_arg = P_arg[:-1]  # Delete the last coma
             P_arg = P_arg[1:]  # and space bar
@@ -492,7 +493,5 @@ def make_file(f_name, *ps):
 
 
 make_file('kk.py', *rs)
-execfile('kk.py')
-
-
-
+#execfile('kk.py')
+exec(open("kk.py").read())
