@@ -358,9 +358,6 @@ query = []
 ps += resultat[:-1]
 query.append(resultat[-1], )
 
-print(ps)
-
-print(query)
 # Iterates the list of rules and facts
 # --------------------------------------------------------------------------------------------------------------
 for p in ps:
