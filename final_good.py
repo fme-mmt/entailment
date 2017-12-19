@@ -342,13 +342,13 @@ print(resultat)
 facts = []
 property = []
 relations = [
-    'European = Relation()','Spanish = Relation() ', 'German = Relation()', 'English = Relation()', 'French = Relation()', 'Italian = Relation()', 'Scandinavian = Relation()',
-    #'Nobel = Relation()', 'Nobel_literature = Relation()', 'Nobel_physics = Relation()', 'Nobel_chemistry = Relation()',
+    'european = Relation()','spaniard = Relation() ', 'german = Relation()', 'english = Relation()', 'french = Relation()', 'swede = Relation()',
+    'large = Relation()', 'small = Relation()', 'not_large = Relation()', 'not_small = Relation()',
     'animal = Relation()', 'cat = Relation()', 'bird = Relation()', 'dog = Relation()', 'mouse = Relation()',
 ]
 functions = [
-    'def European(u): return conde( [Spanish(u)], [German(u)], [English(u)], [French(u)], [Italian(u)] )',
-    #'def Nobel(u): return conde(  (Nobel_literature(u), Nobel_physics(u), Nobel_chemistry(u)))',
+    'def european(u): return conde( [spaniard(u)], [german(u)], [english(u)], [french(u)], [swede(u)] )',
+    'def not_large(u) : return small(u)', 'def not_small(u): return large(u)', 
     'def animal(u): return conde( [cat(u)], [dog(u)], [bird(u)], [mouse(u)])',
 ]
 
